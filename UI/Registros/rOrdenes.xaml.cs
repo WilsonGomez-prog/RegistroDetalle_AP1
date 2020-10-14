@@ -25,30 +25,29 @@ namespace RegistroDetalle_AP1.UI.Registros
         {
             bool valido = true;
 
-            if(MontoTextBox.Text.Length == 0)
+            if(CantidadTextBox.Text.Length == 0)
             {
                 valido = false;
-                MessageBox.Show("Error, monto no valido, esta vacio.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error, cantidad no válida, esta vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+            else if (ProductoIdComboBox.SelectedIndex != null)
+            {
+                valido = false;
+                MessageBox.Show("Error, producto no válido, \nno ha seleccionado ningún producto.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (CantidadTextBox.Text.Length == 0)
+            {
+                valido = false;
+                MessageBox.Show("Error, cantidad no válida, esta vacía.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
             return valido;
         }
 
         public void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            Contexto contexto = new Contexto();
-            var orden = new Ordenes();
 
-            orden.Fecha = DateTime.Now;
-            orden.Monto = 250;
-
-            orden.Detalle.Add(new OrdenesDetalle() {ArticuloId = 3, Cantidad = 2, Precio = 50});
-            orden.Detalle.Add(new OrdenesDetalle() {ArticuloId = 1, Cantidad = 1, Precio = 150});
-            
-            contexto.Ordenes.Add(orden);
-
-            contexto.SaveChanges();
-
-            contexto.Dispose();
         }
 
         public void BuscarButton_Click(object sender, RoutedEventArgs e)
@@ -62,7 +61,8 @@ namespace RegistroDetalle_AP1.UI.Registros
         }
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
-            Limpiar();
-        } 
+
+        }
+
     }
 }

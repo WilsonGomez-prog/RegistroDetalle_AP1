@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegistroDetalle_AP1.UI.Registros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace RegistroDetalle_AP1
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void rOrdenesMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            rOrdenes ventanaOrdenes = new rOrdenes();
+            ventanaOrdenes.Show();
+        }
+
+        private void rArticulosMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            rArticulos ventanaArticulos = new rArticulos();
+            ventanaArticulos.Show();
         }
     }
 }

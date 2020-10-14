@@ -5,33 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RegistroDetalle_AP1"
         mc:Ignorable="d"
-        Title="Registro de Ordenes" Height="500" Width="450">
+        Title="Registro de Ordenes" Height="550" Width="450">
     <Grid>
         <StackPanel>
             <!--OrdenId-->
             <Label Content="Orden ID:" FontSize="15" Height="30" Width="80" Margin="-330, 20, 0, 0"/>
             <TextBox x:Name="OrdenIdTextBox" Text="{Binding OrdenId}" Height="25" Width="75" Margin="-135, -25, 0, 0"/>
-            <Button x:Name="BuscarButton" Height="25" Width="75" Margin="210, -25, 0, 0" Click="BuscarButton_Click">
+            <Button x:Name="BuscarButton" Height="25" Width="75" Margin="220, -25, 0, 0" Click="BuscarButton_Click">
                 <DockPanel>
                     <TextBlock Margin="-5, 0, 0, 0"> Buscar </TextBlock>
                     <Image Source = "/Imagenes/search_icon.png" Height="20" Margin="5,0,0,0"/>
                 </DockPanel>
             </Button>
-
+            
             <!--Fecha-->
             <Label Content="Fecha:" FontSize="15" Height="30" Width="70" Margin="-340, 15, 0, 0"/>
             <DatePicker x:Name="FechaDatePicker" Text="{Binding Fecha}" Height="25" Width="160" Margin="-50, -25, 0, 0"/>
 
-            <!--Cantidad-->
-            <Label Content="Cantidad:" FontSize="15" Height="30" Width="70" Margin="-340, 15, 0, 0"/>
-            <TextBox x:Name="CantidadTextBox" Text="{Binding Detalle.Cantidad}" Height="25" Width="160" Margin="-50, -25, 0, 0"/>
+            <!--Monto-->
+            <Label Content="Monto:" FontSize="15" Height="30" Width="75" Margin="-340, 15, 0, 0"/>
+            <TextBox x:Name="MontoTextBox" Text="{Binding Monto}" Height="25" Width="160" Margin="-50, -25, 0, 0" IsReadOnly="True"/>
 
             <!--ProductoId-->
-            <Label Content="ProductoId:" FontSize="15" Height="30" Width="70" Margin="-340, 15, 0, 0"/>
+            <Label Content="ProductoId:" FontSize="15" Height="30" Width="87" Margin="-325, 15, 0, 0"/>
             <ComboBox x:Name="ProductoIdComboBox" Height="25" Width="160" Margin="-50, -25, 0, 0"/>
+            
+            <!--Cantidad-->
+            <Label Content="Cantidad:" FontSize="15" Height="30" Width="75" Margin="-340, 15, 0, 0"/>
+            <TextBox x:Name="CantidadTextBox" Text="{Binding Detalle.Cantidad}" Height="25" Width="160" Margin="-50, -25, 0, 0"/>
 
-            <!-- Botones -->
-            <Button x:Name="NuevoButton" Height="40" Width="85" Margin="-300, 230, 0, 0" Click="NuevoButton_Click">
+            <Button x:Name="AgregarButton" Height="25" Width="75" Margin="225,-25,0,0" Click="NuevoButton_Click">
+                <DockPanel>
+                    <TextBlock Margin="0, 3, 0, 0"> Agregar</TextBlock>
+                    <Image Source = "/Imagenes/add_icon.png" Height="20" Margin="5,0,0,0"/>
+                </DockPanel>
+            </Button>
+
+            <!--DetallesDataGrid-->
+            <StackPanel Margin="0,20,0,0">
+                <DataGrid x:Name="DetallesDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" Height="200" Width="425" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Detalles.Id}"/>
+                        <DataGridTextColumn Header="ID Orden" Binding="{Binding Detalles.OrdenId}"/>
+                        <DataGridTextColumn Header="ID Artículo" Binding="{Binding Detalles.ArticuloId}"/>
+                        <DataGridTextColumn Header="Cantidad" Binding="{Binding Detalles.Cantidad}"/>
+                        <DataGridTextColumn Header="Precio" Binding="{Binding Detalles.Precio}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+                <!-- Botones -->
+            <Button x:Name="NuevoButton" Height="40" Width="85" Margin="-300, 15, 0, 0" Click="NuevoButton_Click">
                 <DockPanel>
                     <TextBlock Margin="-5, 3, 0, 0"> Nuevo </TextBlock>
                     <Image Source = "/Imagenes/new_icon.png" Height="25" Margin="5,0,0,0"/>
